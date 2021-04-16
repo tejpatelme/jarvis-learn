@@ -1,0 +1,67 @@
+.video-player-container {
+  max-width: 1200px;
+  margin: auto;
+  position: relative;
+  padding-top: 56.25%;
+  margin-bottom: 1rem;
+}
+
+.video-details button {
+  border: 0;
+  background: transparent;
+}
+
+.youtube-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.video-details {
+  padding: 0 1rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.video-title {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.875rem;
+}
+
+.video-description {
+  font-size: 0.875rem;
+  max-width: 650px;
+  color: var(--gray-two);
+  margin-bottom: 2rem;
+}
+
+@media screen and (min-width: 640px) {
+  .video-player-container {
+    margin-bottom: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .video-title {
+    font-size: 1.25rem;
+  }
+
+  .video-description {
+    font-size: 1.125rem;
+  }
+}
+
+.channel-details {
+  display: flex;
+  align-items: center;
+}
+
+.channel-name {
+  font-weight: 600;
+}
+
+.extra-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
