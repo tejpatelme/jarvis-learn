@@ -42,7 +42,11 @@ export default function Video() {
         <div className="extra-details mb-5">
           <div className="channel-details">
             <div className="avatar avatar-lg mr-2">
-              <img src={currentVideo.channelLogo} className="img-round" />
+              <img
+                src={currentVideo.channelLogo}
+                className="img-round"
+                alt="channel-logo"
+              />
             </div>
             <span className="channel-name">{currentVideo.channelName}</span>
           </div>
