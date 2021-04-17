@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer } from "react";
-import { playlist as initialPlaylist, playlist } from "../data/data";
+import { playlist as initialPlaylist } from "../data/data";
 import { v4 as uuidv4 } from "uuid";
 
 const data = {
