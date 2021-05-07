@@ -21,6 +21,7 @@ export default function PlaylistModal({ currentVideo }) {
     }
 
     dispatch({ TYPE: "ADD_NEW_PLAYLIST", PAYLOAD: input });
+    setInput("");
   };
 
   const handlePlaylist = (currentPlaylist, currentVideo) => {
@@ -69,7 +70,7 @@ export default function PlaylistModal({ currentVideo }) {
             <li key={idx}>
               <label>
                 <input
-                  checked={match}
+                  checked={match ? true : false}
                   onChange={() => handlePlaylist(currentPlaylist, currentVideo)}
                   type="checkbox"
                   className="mr-2"
