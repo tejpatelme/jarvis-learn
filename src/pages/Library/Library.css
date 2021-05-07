@@ -33,22 +33,30 @@
 }
 
 .playlist-videos {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
   overflow-x: scroll;
-  scrollbar-width: none;
+  scrollbar-width: thin;
+  padding-bottom: 0.875rem;
 }
 
-.playlist-videos::-webkit-scrollbar {
-  /* WebKit */
+/* .playlist-videos::-webkit-scrollbar {
   width: 0;
   height: 0;
+} */
+
+.playlist-videos::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.playlist-videos::-webkit-scrollbar-thumb {
+  background: gray;
+  border-radius: 20px;
 }
 
 .playlist-videos > * {
   flex-shrink: 0;
-  width: 224px;
-}
-
-.playlist-videos > * + * {
-  margin-left: 0.875rem;
+  min-width: 224px;
 }
