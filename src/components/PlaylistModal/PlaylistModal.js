@@ -57,6 +57,7 @@ export default function PlaylistModal({ currentVideo }) {
       PAYLOAD: {
         message: "Added to playlist",
       },
+      autoCloseInterval: 2000,
     });
   };
   return (
