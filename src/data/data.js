@@ -287,6 +287,62 @@ const videoLib = [
       "https://yt3.ggpht.com/ytc/AAUvwnhSc4rUizQ3LSxth3FxWehHQb8da2qs54dH5F9oIQ=s48-c-k-c0x00ffffff-no-rj",
     topic: "Design Fundamentals",
   },
+  {
+    id: "1Dh8ZBQp9jo",
+    image: "http://i3.ytimg.com/vi/1Dh8ZBQp9jo/maxresdefault.jpg",
+    name: "The New Material.io",
+    description:
+      "Discover what’s new with Material.io with a walk through of the new Design, Develop, and Tools landing pages. Learn how to access our Tools and Material Studies available to designers and developers.",
+    channelName: "Google Design",
+    channelLogo:
+      "https://yt3.ggpht.com/ytc/AAUvwnjps1VS0yQEw1TjW3xk19K-SRgCw2qT8O1eZKP4kw=s48-c-k-c0x00ffffff-no-rj",
+    topic: "Material Design",
+  },
+  {
+    id: "AUXKtt6bizw",
+    image: "http://i3.ytimg.com/vi/AUXKtt6bizw/maxresdefault.jpg",
+    name:
+      "Understanding the Material Design type system | Google Design Tutorials",
+    description:
+      "In this tutorial, learn how typography works in Material Design, and create a custom type system with expressive headline styles, readable body styles, and everything in between.",
+    channelName: "Google Design",
+    channelLogo:
+      "https://yt3.ggpht.com/ytc/AAUvwnjps1VS0yQEw1TjW3xk19K-SRgCw2qT8O1eZKP4kw=s48-c-k-c0x00ffffff-no-rj",
+    topic: "Material Design",
+  },
+  {
+    id: "TB3L1LbC4zw",
+    image: "http://i3.ytimg.com/vi/TB3L1LbC4zw/maxresdefault.jpg",
+    name:
+      "Understanding the Material Design color system | Google Design Tutorials",
+    description:
+      "In this tutorial, learn how color works in Material, walking through primary and secondary colors, tonal palettes, “on” colors, and additional customization to express your brand in Material Design with a consistent, comprehensive approach to color.",
+    channelName: "Google Design",
+    channelLogo:
+      "https://yt3.ggpht.com/ytc/AAUvwnjps1VS0yQEw1TjW3xk19K-SRgCw2qT8O1eZKP4kw=s48-c-k-c0x00ffffff-no-rj",
+    topic: "Material Design",
+  },
+  {
+    id: "cnlabMHshcE",
+    image: "http://i3.ytimg.com/vi/cnlabMHshcE/maxresdefault.jpg",
+    name: "Beginner Tips for Typography | Material Live Highlights",
+    description: "How how to use Type effectively",
+    channelName: "Material Design",
+    channelLogo:
+      "https://yt3.ggpht.com/ytc/AAUvwnjL2xnFFmomBWHqO-jdgicDyX51RzVtzPq4Lq0l=s48-c-k-c0x00ffffff-no-rj",
+    topic: "Material Design",
+  },
+  {
+    id: "eXcKOqviLE0",
+    image: "http://i3.ytimg.com/vi/eXcKOqviLE0/maxresdefault.jpg",
+    name: "How to Apply a Color Palette to Your Design – Tutorial",
+    description:
+      "How do I use a color palette? How many colors should I use? How will I know if my colors look good together? Making a color palette is the first step, but knowing how to use it is something else.",
+    channelName: "The Futur Academy",
+    channelLogo:
+      "https://yt3.ggpht.com/ytc/AAUvwnipSvnTzICFTps8lEi_RY0Eg7e5ymSPVJpjN12g=s48-c-k-c0x00ffffff-no-rj",
+    topic: "Color Theory",
+  },
 ];
 
 const topics = [
