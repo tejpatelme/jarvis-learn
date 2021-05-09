@@ -1,9 +1,10 @@
 import "./Library.css";
 import { useUserData } from "../../context/userdata-context";
 import { VideoCard } from "../../components";
+import { Link } from "react-router-dom";
 
 export default function Library() {
-  const { playlist } = useUserData();
+  const { liked, playlist } = useUserData();
 
   return (
     <>
@@ -27,7 +28,14 @@ export default function Library() {
                     <p className="playlist-name">{playlist.name}</p>
                     <span>{playlist.videos.length} Videos</span>
                   </div>
-                  <button className="btn btn-xs btn-primary">SEE ALL</button>
+                  <Link replace to={`/playlist/${playlist.name}`}>
+                    <button
+                      className="btn btn-xs sbtn-primary"
+                      disabled={playlist.videos.length === 0 ? true : false}
+                    >
+                      SEE ALL
+                    </button>
+                  </Link>
                 </div>
                 <div className="playlist-videos">
                   {playlist.videos.slice(0, 5).map((video, idx) => (
@@ -37,6 +45,27 @@ export default function Library() {
               </div>
             );
           })}
+          <div>
+            <div className="playlist-details">
+              <div>
+                <p className="playlist-name">Liked</p>
+                <span>{liked.length} Videos</span>
+              </div>
+              <Link replace to="/liked">
+                <button
+                  className="btn btn-xs sbtn-primary"
+                  disabled={liked.length === 0 ? true : false}
+                >
+                  SEE ALL
+                </button>
+              </Link>
+            </div>
+            <div className="playlist-videos">
+              {liked.slice(0, 5).map((video, idx) => (
+                <VideoCard key={idx} videoDetails={video} />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </>
