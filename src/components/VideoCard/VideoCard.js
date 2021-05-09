@@ -12,7 +12,7 @@ export default function VideoCard({ videoDetails }) {
             src={image}
             alt="video-thumbnail"
           />
-          <span className="badge badge-text">4:52</span>
+          {/* <span className="badge badge-text">4:52</span> */}
         </div>
         <p className="video__title">{name}</p>
         <div className="channel__details">
