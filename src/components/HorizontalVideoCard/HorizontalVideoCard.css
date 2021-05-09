@@ -1,0 +1,40 @@
+.horizontal-video-card {
+  display: flex;
+  max-width: 968px;
+  margin: auto;
+  padding: 1rem;
+}
+
+.video-image {
+  max-width: 300px;
+  object-fit: cover;
+}
+
+.horizontal-video-description {
+  margin-bottom: 0.875rem;
+  line-height: 1.5;
+  max-height: 4.5rem;
+  overflow: hidden;
+  text-overflow: hidden;
+}
+
+.horizontal-video-details {
+  padding: 0.875rem;
+  flex-grow: 1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 768px) {
+  .video-image {
+    max-width: 45%;
+    object-fit: cover;
+  }
+  .horizontal-video-description {
+    display: none;
+  }
+  .horizontal-video-details {
+    padding: 0 0.875rem;
+    flex-grow: 1;
+  }
+}
