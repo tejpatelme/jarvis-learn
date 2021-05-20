@@ -1,18 +1,21 @@
 import { TopicCard, VideoCard } from "../../components";
-import { videoLib, topics } from "../../data/data";
+import { useUserData } from "../../context/userdata-context";
+import { topics } from "../../data/data";
 import "./Home.css";
 
 export default function Home() {
-  const figmaVideos = videoLib
+  const { videos } = useUserData();
+
+  const figmaVideos = videos
     .filter((video) => video.topic === "Figma Basics")
     .slice(0, 3);
-  const fundamentalsVideos = videoLib
+  const fundamentalsVideos = videos
     .filter((video) => video.topic === "Design Fundamentals")
     .slice(0, 3);
-  const materialVideos = videoLib
+  const materialVideos = videos
     .filter((video) => video.topic === "Material Design")
     .slice(0, 3);
-  const colorVideos = videoLib
+  const colorVideos = videos
     .filter((video) => video.topic === "Color Theory")
     .slice(0, 3);
 
