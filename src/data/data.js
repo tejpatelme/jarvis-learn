@@ -301,8 +301,7 @@ const videoLib = [
   {
     id: "AUXKtt6bizw",
     image: "http://i3.ytimg.com/vi/AUXKtt6bizw/maxresdefault.jpg",
-    name:
-      "Understanding the Material Design type system | Google Design Tutorials",
+    name: "Understanding the Material Design type system | Google Design Tutorials",
     description:
       "In this tutorial, learn how typography works in Material Design, and create a custom type system with expressive headline styles, readable body styles, and everything in between.",
     channelName: "Google Design",
@@ -313,8 +312,7 @@ const videoLib = [
   {
     id: "TB3L1LbC4zw",
     image: "http://i3.ytimg.com/vi/TB3L1LbC4zw/maxresdefault.jpg",
-    name:
-      "Understanding the Material Design color system | Google Design Tutorials",
+    name: "Understanding the Material Design color system | Google Design Tutorials",
     description:
       "In this tutorial, learn how color works in Material, walking through primary and secondary colors, tonal palettes, “on” colors, and additional customization to express your brand in Material Design with a consistent, comprehensive approach to color.",
     channelName: "Google Design",
