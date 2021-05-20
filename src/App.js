@@ -21,7 +21,7 @@ function App() {
         };
       });
 
-      dispatch({ TYPE: "SET_VIDEOS", PAYLOAD: { videos: videoLib } });
+      dispatch({ type: "SET_VIDEOS", payload: { videos: videoLib } });
     } catch (err) {
       console.log(err);
     }

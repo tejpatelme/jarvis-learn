@@ -3,6 +3,7 @@ import { playlist as initialPlaylist } from "../data/data";
 import { v4 as uuidv4 } from "uuid";
 
 const data = {
+  videos: [],
   liked: [],
   playlist: initialPlaylist,
 };
@@ -10,25 +11,32 @@ const data = {
 const UserDataContext = createContext();
 
 const reducer = (prevState, action) => {
-  switch (action.TYPE) {
+  switch (action.type) {
+    case "SET_VIDEOS": {
+      return {
+        ...prevState,
+        videos: action.payload.videos,
+      };
+    }
+
     case "ADD_TO_LIKED": {
       return {
         ...prevState,
-        liked: prevState.liked.concat(action.PAYLOAD),
+        liked: prevState.liked.concat(action.payload),
       };
     }
 
     case "REMOVE_FROM_LIKED": {
       return {
         ...prevState,
-        liked: prevState.liked.filter((video) => video.id !== action.PAYLOAD),
+        liked: prevState.liked.filter((video) => video.id !== action.payload),
       };
     }
 
     case "ADD_NEW_PLAYLIST": {
       const tempPlaylist = {
         id: uuidv4(),
-        name: action.PAYLOAD,
+        name: action.payload,
         videos: [],
       };
       return {
@@ -41,10 +49,10 @@ const reducer = (prevState, action) => {
       return {
         ...prevState,
         playlist: prevState.playlist.map((playlist) => {
-          if (playlist.id === action.PAYLOAD.playlistId) {
+          if (playlist.id === action.payload.playlistId) {
             return {
               ...playlist,
-              videos: playlist.videos.concat(action.PAYLOAD.video),
+              videos: playlist.videos.concat(action.payload.video),
             };
           }
           return playlist;
@@ -56,11 +64,11 @@ const reducer = (prevState, action) => {
       return {
         ...prevState,
         playlist: prevState.playlist.map((playlist) => {
-          if (playlist.id === action.PAYLOAD.playlistId) {
+          if (playlist.id === action.payload.playlistId) {
             return {
               ...playlist,
               videos: playlist.videos.filter(
-                (item) => item.id !== action.PAYLOAD.videoId
+                (item) => item.id !== action.payload.videoId
               ),
             };
           }
@@ -75,9 +83,9 @@ const reducer = (prevState, action) => {
 };
 
 export default function UserDataProvider({ children }) {
-  const [{ liked, playlist }, dispatch] = useReducer(reducer, data);
+  const [{ videos, liked, playlist }, dispatch] = useReducer(reducer, data);
   return (
-    <UserDataContext.Provider value={{ liked, playlist, dispatch }}>
+    <UserDataContext.Provider value={{ videos, liked, playlist, dispatch }}>
       {children}
     </UserDataContext.Provider>
   );

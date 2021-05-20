@@ -11,8 +11,8 @@ export default function PlaylistModal({ currentVideo }) {
   const addNewPlaylist = () => {
     if (input === "" || input.trim() === "") {
       toastDispatch({
-        TYPE: "ERROR",
-        PAYLOAD: {
+        type: "ERROR",
+        payload: {
           message: "Playlist name cannot be empty",
         },
       });
@@ -20,7 +20,7 @@ export default function PlaylistModal({ currentVideo }) {
       return;
     }
 
-    dispatch({ TYPE: "ADD_NEW_PLAYLIST", PAYLOAD: input });
+    dispatch({ type: "ADD_NEW_PLAYLIST", payload: input });
     setInput("");
   };
 
@@ -30,15 +30,15 @@ export default function PlaylistModal({ currentVideo }) {
     );
     if (match) {
       dispatch({
-        TYPE: "REMOVE_VIDEO_FROM_PLAYLIST",
-        PAYLOAD: {
+        type: "REMOVE_VIDEO_FROM_PLAYLIST",
+        payload: {
           playlistId: currentPlaylist.id,
           videoId: currentVideo.id,
         },
       });
       toastDispatch({
-        TYPE: "ERROR",
-        PAYLOAD: {
+        type: "ERROR",
+        payload: {
           message: "Removed from playlist",
         },
       });
@@ -46,15 +46,15 @@ export default function PlaylistModal({ currentVideo }) {
     }
 
     dispatch({
-      TYPE: "ADD_VIDEO_TO_PLAYLIST",
-      PAYLOAD: {
+      type: "ADD_VIDEO_TO_PLAYLIST",
+      payload: {
         playlistId: currentPlaylist.id,
         video: currentVideo,
       },
     });
     toastDispatch({
-      TYPE: "SUCCESS",
-      PAYLOAD: {
+      type: "SUCCESS",
+      payload: {
         message: "Added to playlist",
       },
       autoCloseInterval: 2000,

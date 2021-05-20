@@ -15,11 +15,11 @@ export default function Video() {
   const handleLike = (id) => {
     const match = liked.find((video) => video.id === id);
     if (match) {
-      dispatch({ TYPE: "REMOVE_FROM_LIKED", PAYLOAD: id });
+      dispatch({ type: "REMOVE_FROM_LIKED", payload: id });
       return;
     }
 
-    dispatch({ TYPE: "ADD_TO_LIKED", PAYLOAD: currentVideo });
+    dispatch({ type: "ADD_TO_LIKED", payload: currentVideo });
   };
 
   return (
