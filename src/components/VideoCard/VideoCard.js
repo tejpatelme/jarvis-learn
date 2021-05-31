@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 import "./VideoCard.css";
 
 export default function VideoCard({ videoDetails }) {
-  const { id, imageURL, name, channelName, channelLogoURL } = videoDetails;
+  const { videoId, imageURL, name, channelName, channelLogoURL } = videoDetails;
   return (
-    <Link to={`/video/${id}`}>
+    <Link to={`/video/${videoId}`}>
       <div className="video-card relative">
         <div>
           <img
