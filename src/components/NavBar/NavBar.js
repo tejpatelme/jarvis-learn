@@ -1,6 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/auth-context";
 
 export default function NavBar() {
+  const { isLoggedIn, logOutUser } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => logOutUser();
+
+  const handleSignup = () => navigate("/signup");
+
+  const handleLogin = () => navigate("/login");
+
   return (
     <header className="top-navigation">
       <div className="nav-container">
@@ -13,11 +23,35 @@ export default function NavBar() {
         </div>
         <div className="nav-links">
           <ul>
-            <li>
-              <Link to="/">
-                <span className="material-icons-round">home</span>
-              </Link>
-            </li>
+            {isLoggedIn ? (
+              <li>
+                <button
+                  onClick={handleLogout}
+                  className="btn btn-sm btn-primary"
+                >
+                  Logout
+                </button>
+              </li>
+            ) : (
+              <>
+                <li>
+                  <button
+                    onClick={handleSignup}
+                    className="btn btn-sm btn-primary"
+                  >
+                    Sign Up
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={handleLogin}
+                    className="btn btn-sm btn-secondary"
+                  >
+                    Login
+                  </button>
+                </li>
+              </>
+            )}
 
             <li>
               <Link to="/library">
