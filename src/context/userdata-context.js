@@ -19,6 +19,13 @@ const reducer = (prevState, action) => {
       };
     }
 
+    case "SET_PLAYLISTS": {
+      return {
+        ...prevState,
+        playlist: action.payload.playlists,
+      };
+    }
+
     case "ADD_TO_LIKED": {
       return {
         ...prevState,
