@@ -30,10 +30,12 @@ function App() {
       fetchAllVideos(dispatch, toastDispatch);
       setup401Interceptor();
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     (async () => fetchUsersPlaylists(isLoggedIn, dispatch, toastDispatch))();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoggedIn]);
 
   return (
