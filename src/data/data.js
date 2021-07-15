@@ -1,5 +1,3 @@
-import { v4 as uuidv4 } from "uuid";
-
 const videoLib = [
   {
     id: "gnscqweM_NU",
@@ -373,17 +371,17 @@ const topics = [
   },
 ];
 
-const playlist = [
-  {
-    id: uuidv4(),
-    name: "Watch later",
-    videos: [],
-  },
+// const playlist = [
+//   {
+//     id: uuidv4(),
+//     name: "Watch later",
+//     videos: [],
+//   },
 
-  {
-    id: uuidv4(),
-    name: "Demo Playlist",
-    videos: [],
-  },
-];
-export { videoLib, topics, playlist };
+//   {
+//     id: uuidv4(),
+//     name: "Demo Playlist",
+//     videos: [],
+//   },
+// ];
+export { videoLib, topics };

@@ -2,13 +2,17 @@ import "./PlaylistModal.css";
 import { useState } from "react";
 import { useUserData } from "../../context/userdata-context";
 import { useToast } from "../../context/toast-context";
+import {
+  addNewPlaylist,
+  addVideoToPlaylist,
+} from "../../services/api/playlist-requests";
 
 export default function PlaylistModal({ currentVideo }) {
-  const { playlist, dispatch } = useUserData();
+  const { playlists, dispatch } = useUserData();
   const [input, setInput] = useState("");
   const { dispatch: toastDispatch } = useToast();
 
-  const addNewPlaylist = () => {
+  const checkEmptyString = () => {
     if (input === "" || input.trim() === "") {
       toastDispatch({
         type: "ERROR",
@@ -17,62 +21,51 @@ export default function PlaylistModal({ currentVideo }) {
         },
       });
       setInput("");
+      return true;
+    }
+    return false;
+  };
+
+  const handleAddNewPlaylist = async () => {
+    if (checkEmptyString()) {
       return;
     }
 
-    dispatch({ type: "ADD_NEW_PLAYLIST", payload: input });
+    addNewPlaylist(
+      {
+        name: input,
+      },
+      dispatch,
+      toastDispatch
+    );
+
     setInput("");
   };
 
-  const handlePlaylist = (currentPlaylist, currentVideo) => {
-    const match = currentPlaylist.videos.find(
-      (video) => video.id === currentVideo.id
-    );
-    if (match) {
-      dispatch({
-        type: "REMOVE_VIDEO_FROM_PLAYLIST",
-        payload: {
-          playlistId: currentPlaylist.id,
-          videoId: currentVideo.id,
-        },
-      });
-      toastDispatch({
-        type: "ERROR",
-        payload: {
-          message: "Removed from playlist",
-        },
-      });
-      return;
-    }
-
-    dispatch({
-      type: "ADD_VIDEO_TO_PLAYLIST",
-      payload: {
-        playlistId: currentPlaylist.id,
-        video: currentVideo,
-      },
-    });
-    toastDispatch({
-      type: "SUCCESS",
-      payload: {
-        message: "Added to playlist",
-      },
-      autoCloseInterval: 2000,
+  const handlePlaylist = async (playlistId, currentVideo) => {
+    addVideoToPlaylist({
+      playlistId,
+      currentVideo,
+      dispatch,
+      toastDispatch,
     });
   };
+
   return (
     <div onClick={(e) => e.stopPropagation()} className="playlist-modal">
       <ul>
-        {playlist.map((currentPlaylist, idx) => {
+        {playlists.map((currentPlaylist, idx) => {
           const match = currentPlaylist.videos.find(
-            (video) => video.id === currentVideo.id
+            (video) => video._id === currentVideo._id
           );
           return (
             <li key={idx}>
               <label>
                 <input
                   checked={match ? true : false}
-                  onChange={() => handlePlaylist(currentPlaylist, currentVideo)}
+                  onChange={() =>
+                    handlePlaylist(currentPlaylist._id, currentVideo)
+                  }
                   type="checkbox"
                   className="mr-2"
                 />
@@ -89,7 +82,7 @@ export default function PlaylistModal({ currentVideo }) {
           type="text"
           placeholder="Create a new playlist"
         />
-        <button onClick={() => addNewPlaylist()}>
+        <button onClick={handleAddNewPlaylist}>
           <svg width="1.5rem" height="1.5rem" viewBox="0 0 24 24">
             <path
               d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"

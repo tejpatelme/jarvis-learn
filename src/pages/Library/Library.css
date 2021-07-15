@@ -1,7 +1,13 @@
 .library-container {
-  max-width: 1344px;
   margin: auto;
-  padding: 0 1rem;
+  padding-left: 1rem;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .library-container {
+    max-width: calc(100% - 12rem);
+  }
 }
 
 .page-title {
@@ -16,6 +22,7 @@
 }
 
 .playlist-details {
+  width: 100%;
   display: flex;
   margin-top: 2rem;
   font-size: 0.875rem;

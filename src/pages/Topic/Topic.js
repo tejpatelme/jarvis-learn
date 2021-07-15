@@ -6,7 +6,7 @@ export default function Topic() {
   const { topicName } = useParams();
   const { videos } = useUserData();
   return (
-    <>
+    <div>
       <h2 className="mt-5 mb-2 pl-3">{topicName}</h2>
       <div className="video-container">
         {videos
@@ -15,6 +15,6 @@ export default function Topic() {
             <VideoCard key={idx} videoDetails={video} />
           ))}
       </div>
-    </>
+    </div>
   );
 }

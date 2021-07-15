@@ -2,20 +2,14 @@ import { Link } from "react-router-dom";
 import "./HorizontalVideoCard.css";
 
 export default function HorizontalVideoCard({ videoDetails }) {
-  const {
-    id,
-    image,
-    name,
-    description,
-    channelName,
-    channelLogo,
-  } = videoDetails;
+  const { videoId, imageURL, name, description, channelName, channelLogoURL } =
+    videoDetails;
   return (
-    <Link to={`/video/${id}`}>
+    <Link to={`/video/${videoId}`}>
       <div className="horizontal-video-card">
         <img
           className="img-res video-image"
-          src={image}
+          src={imageURL}
           alt="video-thumbnail"
         />
         <div className="horizontal-video-details">
@@ -25,7 +19,7 @@ export default function HorizontalVideoCard({ videoDetails }) {
             <span>By</span>
             <img
               className="channel__image"
-              src={channelLogo}
+              src={channelLogoURL}
               alt="channel-logo"
             />
             {channelName}

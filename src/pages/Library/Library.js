@@ -1,13 +1,13 @@
 import "./Library.css";
 import { useUserData } from "../../context/userdata-context";
-import { VideoCard } from "../../components";
+import { LoadingContainer, VideoCard } from "../../components";
 import { Link } from "react-router-dom";
 
 export default function Library() {
-  const { liked, playlist } = useUserData();
+  const { playlists, videos } = useUserData();
 
   return (
-    <>
+    <LoadingContainer loading={videos.length === 0}>
       <div className="library-container">
         <div className="page-title">
           <svg width="1.25rem" height="1.25rem" viewBox="0 0 24 24">
@@ -20,7 +20,7 @@ export default function Library() {
         </div>
 
         <div className="playlist-container">
-          {playlist.map((playlist, idx) => {
+          {playlists.map((playlist, idx) => {
             return (
               <div key={idx}>
                 <div className="playlist-details">
@@ -45,29 +45,8 @@ export default function Library() {
               </div>
             );
           })}
-          <div>
-            <div className="playlist-details">
-              <div>
-                <p className="playlist-name">Liked</p>
-                <span>{liked.length} Videos</span>
-              </div>
-              <Link replace to="/liked">
-                <button
-                  className="btn btn-xs sbtn-primary"
-                  disabled={liked.length === 0 ? true : false}
-                >
-                  SEE ALL
-                </button>
-              </Link>
-            </div>
-            <div className="playlist-videos">
-              {liked.slice(0, 5).map((video, idx) => (
-                <VideoCard key={idx} videoDetails={video} />
-              ))}
-            </div>
-          </div>
         </div>
       </div>
-    </>
+    </LoadingContainer>
   );
 }

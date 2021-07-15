@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useParams } from "react-router";
-// import { videoLib } from "../../data/data";
 import "./Video.css";
 import { useUserData } from "../../context/userdata-context";
 import { ModalBg, PlaylistModal } from "../../components";
@@ -12,8 +11,6 @@ export default function Video() {
   const { videos } = useUserData();
   const currentVideo = videos.find((video) => video.videoId === videoId);
 
-  const dataLoaded = videos.length === 0 ? false : true;
-
   const handleLike = (id) => {
     const match = liked.find((video) => video.id === id);
     if (match) {
@@ -24,10 +21,14 @@ export default function Video() {
     dispatch({ type: "ADD_TO_LIKED", payload: currentVideo });
   };
 
+  const videosEmpty = videos.length === 0;
+
   return (
-    <>
-      {dataLoaded ? (
-        <div>
+    <div>
+      {videosEmpty ? (
+        <p>Loading...</p>
+      ) : (
+        <>
           <div className="video-player-container">
             <iframe
               className="youtube-player"
@@ -59,11 +60,10 @@ export default function Video() {
                   className="mr-3"
                   onClick={() => handleLike(currentVideo.id)}
                 >
-                  {liked.find((video) => video.id === currentVideo.id) ? (
+                  {/* {liked.find((video) => video.id === currentVideo.id) ? (
                     <span className="material-icons">favorite</span>
-                  ) : (
-                    <span className="material-icons">favorite_border</span>
-                  )}
+                  ) : ( )*/}
+                  <span className="material-icons">favorite_border</span>
                 </button>
                 <button onClick={() => setShowModal((showModal) => !showModal)}>
                   <span className="material-icons">playlist_add</span>
@@ -76,10 +76,8 @@ export default function Video() {
               <PlaylistModal currentVideo={currentVideo} />
             </ModalBg>
           )}
-        </div>
-      ) : (
-        <p>Loading</p>
+        </>
       )}
-    </>
+    </div>
   );
 }

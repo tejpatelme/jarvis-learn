@@ -8,15 +8,15 @@ import AuthProvider from "./context/auth-context";
 
 ReactDOM.render(
   <React.StrictMode>
-    <UserDataProvider>
-      <ToastProvider>
+    <ToastProvider>
+      <UserDataProvider>
         <Router>
           <AuthProvider>
             <App />
           </AuthProvider>
         </Router>
-      </ToastProvider>
-    </UserDataProvider>
+      </UserDataProvider>
+    </ToastProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

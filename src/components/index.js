@@ -6,3 +6,7 @@ export { default as PlaylistModal } from "./PlaylistModal/PlaylistModal";
 export { default as Toast } from "./Toast/Toast";
 export { default as ToastContainer } from "./Toast/ToastContainer";
 export { default as HorizontalVideoCard } from "./HorizontalVideoCard/HorizontalVideoCard";
+export { default as LoadingContainer } from "./LoadingContainer/LoadingContainer";
+export { default as ErrorMessage } from "./ErrorMessage/ErrorMessage";
+export { default as SidebarNavlink } from "./SidebarNavlink/SidebarNavlink";
+export { default as Sidebar } from "./Sidebar/Sidebar";
