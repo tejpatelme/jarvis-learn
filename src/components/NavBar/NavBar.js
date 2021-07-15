@@ -1,63 +1,27 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/auth-context";
+import "./NavBar.css";
+import { Link } from "react-router-dom";
 
-export default function NavBar() {
-  const { isLoggedIn, logOutUser } = useAuth();
-  const navigate = useNavigate();
-
-  const handleLogout = () => logOutUser();
-
-  const handleSignup = () => navigate("/signup");
-
-  const handleLogin = () => navigate("/login");
+export default function NavBar({ setShowSidebar }) {
+  const onHamburgerClick = (e) => {
+    e.stopPropagation();
+    setShowSidebar((showSidebar) => !showSidebar);
+  };
 
   return (
     <header className="top-navigation">
       <div className="nav-container">
-        <div className="logo">
-          <Link to="/">
-            <h1>
-              <span>Learn</span>
-            </h1>
-          </Link>
-        </div>
+        <span
+          onClick={onHamburgerClick}
+          className="material-icons-round icon-gray"
+        >
+          menu
+        </span>
+        <Link to="/">
+          <span className="logo">JARVIS•LEARN</span>
+        </Link>
         <div className="nav-links">
           <ul>
-            {isLoggedIn ? (
-              <li>
-                <button
-                  onClick={handleLogout}
-                  className="btn btn-sm btn-primary"
-                >
-                  Logout
-                </button>
-              </li>
-            ) : (
-              <>
-                <li>
-                  <button
-                    onClick={handleSignup}
-                    className="btn btn-sm btn-primary"
-                  >
-                    Sign Up
-                  </button>
-                </li>
-                <li>
-                  <button
-                    onClick={handleLogin}
-                    className="btn btn-sm btn-secondary"
-                  >
-                    Login
-                  </button>
-                </li>
-              </>
-            )}
-
-            <li>
-              <Link to="/library">
-                <span className="material-icons-round">video_library</span>
-              </Link>
-            </li>
+            <div></div>
           </ul>
         </div>
       </div>

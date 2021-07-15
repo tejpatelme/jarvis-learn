@@ -1,0 +1,29 @@
+.active-link {
+  background-color: #d4d4d8;
+}
+
+.sidebar-navlink {
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  color: #27272a;
+}
+
+.sidebar-navlink:hover {
+  background-color: #e4e4e7;
+}
+
+.link-title {
+  padding-left: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.icon-md {
+  font-size: 28px;
+}
+
+.icon-gray {
+  color: #71717a;
+}

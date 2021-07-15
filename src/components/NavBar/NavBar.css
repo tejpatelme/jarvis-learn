@@ -1,0 +1,9 @@
+.top-navigation {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .top-navigation {
+    display: block;
+  }
+}

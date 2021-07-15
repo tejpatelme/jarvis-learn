@@ -1,7 +1,8 @@
 import "./App.css";
-import { useEffect, useCallback } from "react";
+import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import { NavBar, ToastContainer } from "./components";
+import { NavBar, Sidebar, ToastContainer } from "./components";
+import PrivateRoute from "./auth/PrivateRoute";
 import {
   Home,
   Video,
@@ -12,62 +13,62 @@ import {
   Login,
   Signup,
 } from "./pages";
-import API from "./api/api-urls";
-import axios from "axios";
 import { useUserData } from "./context/userdata-context";
 import { useAuth } from "./context/auth-context";
+import { fetchAllVideos } from "./services/api/video-requests";
+import { useToast } from "./context/toast-context";
+import { fetchUsersPlaylists } from "./services/api/playlist-requests";
 
 function App() {
+  const [showSidebar, setShowSidebar] = useState(false);
   const { dispatch } = useUserData();
-  const { isLoggedIn } = useAuth();
-
-  const fetchVideos = useCallback(async () => {
-    try {
-      const videos = await axios.get(API.FETCH_VIDEOS_URL);
-      const videoLib = videos.data.map((video) => {
-        const { _id: id, ...rest } = video;
-        return {
-          id,
-          ...rest,
-        };
-      });
-
-      dispatch({ type: "SET_VIDEOS", payload: { videos: videoLib } });
-    } catch (err) {
-      console.log(err);
-    }
-  }, [dispatch]);
-
-  useEffect(() => {
-    fetchVideos();
-  }, [fetchVideos]);
+  const { isLoggedIn, setup401Interceptor } = useAuth();
+  const { dispatch: toastDispatch } = useToast();
 
   useEffect(() => {
     (async () => {
-      try {
-        const { data } = await axios.get(`${API.BASE_URL}/playlists`);
-
-        dispatch({ type: "SET_PLAYLISTS", payload: { playlists: data } });
-      } catch (err) {
-        console.log(err.response);
-      }
+      fetchAllVideos(dispatch, toastDispatch);
+      setup401Interceptor();
     })();
-  }, [dispatch, isLoggedIn]);
+  }, []);
+
+  useEffect(() => {
+    (async () => fetchUsersPlaylists(isLoggedIn, dispatch, toastDispatch))();
+  }, [isLoggedIn]);
 
   return (
-    <div className="App">
-      <NavBar />
+    <div onClick={() => setShowSidebar(false)} className="App">
+      <ToastContainer />
+      {showSidebar && <div className="sidebar-bg"></div>}
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/video/:videoId" element={<Video />} />
-        <Route path="/topic/:topicName" element={<Topic />} />
-        <Route path="/library" element={<Library />} />
-        <Route path="/playlist/:playlistName" element={<Playlist />} />
-        <Route path="liked" element={<Liked />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route
+          path="*"
+          element={
+            <div className="view-container">
+              <Sidebar
+                showSidebar={showSidebar}
+                setShowSidebar={setShowSidebar}
+              />
+              <NavBar setShowSidebar={setShowSidebar} />
+              <Routes>
+                <Route path="/" element={<Home />} />
+
+                <Route path="/topic/:topicName" element={<Topic />} />
+                <Route path="liked" element={<Liked />} />
+
+                <PrivateRoute path="/library" element={<Library />} />
+                <PrivateRoute
+                  path="/playlist/:playlistName"
+                  element={<Playlist />}
+                />
+              </Routes>
+            </div>
+          }
+        />
+        <Route path="/video/:videoId" element={<Video />} />
       </Routes>
-      <ToastContainer />
     </div>
   );
 }
