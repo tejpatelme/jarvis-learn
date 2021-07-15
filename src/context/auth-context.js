@@ -1,6 +1,8 @@
 import axios from "axios";
 import { createContext, useContext, useState } from "react";
-import API from "../api/api-urls";
+import { useToast } from "./toast-context";
+import { useNavigate } from "react-router";
+import API from "../services/api/api-urls";
 
 const AuthContext = createContext();
 
@@ -15,6 +17,8 @@ export default function AuthProvider({ children }) {
   });
 
   const { isLoggedIn, token } = loginInfo;
+  const { dispatch: toastDispatch } = useToast();
+  const navigate = useNavigate();
 
   const setupHeaderForServiceCalls = () => {
     if (isLoggedIn && token) {
@@ -30,13 +34,13 @@ export default function AuthProvider({ children }) {
     try {
       const {
         data: { success },
-      } = axios.post(`${API.BASE_URL}/users/signup`, {
+      } = await axios.post(`${API.BASE_URL}/users/signup`, {
         name,
         email,
         password,
       });
 
-      if (success === "true") {
+      if (success === true) {
         return success;
       }
     } catch (err) {
@@ -73,9 +77,33 @@ export default function AuthProvider({ children }) {
     });
   };
 
+  const setup401Interceptor = () => {
+    axios.interceptors.response.use(
+      (response) => response,
+      (error) => {
+        if (error?.response?.data?.errorType === "JWT") {
+          toastDispatch({
+            type: "ERROR",
+            payload: { message: "Token expired, please login again" },
+          });
+          logOutUser();
+          navigate("/login");
+        }
+        return Promise.reject(error);
+      }
+    );
+  };
+
   return (
     <AuthContext.Provider
-      value={{ isLoggedIn, signUpUser, logInUser, logOutUser, token }}
+      value={{
+        setup401Interceptor,
+        isLoggedIn,
+        signUpUser,
+        logInUser,
+        logOutUser,
+        token,
+      }}
     >
       {children}
     </AuthContext.Provider>

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../../context/auth-context";
 import { useToast } from "../../context/toast-context";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { isEmail, isStrongPassword } from "validator";
+import { ErrorMessage } from "../../components";
 
 export default function Signup() {
   const [name, setName] = useState("");
@@ -10,18 +12,62 @@ export default function Signup() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [signUpStatus, setSignUpSatus] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [validationError, setValidationError] = useState({
+    email: "",
+    password: "",
+  });
 
-  const { signUpUser } = useAuth();
+  const { signUpUser, isLoggedIn } = useAuth();
   const { state } = useLocation();
   const navigate = useNavigate();
-
   const { dispatch: toastDispatch } = useToast();
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  //   useEffect(() => isLoggedIn && navigate("/"), [isLoggedIn]);
+  //eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => isLoggedIn && navigate("/"), [isLoggedIn]);
+
+  const validateEmail = () => {
+    setValidationError((validationError) => ({
+      ...validationError,
+      email: "",
+    }));
+
+    if (!isEmail(email)) {
+      setValidationError((validationError) => ({
+        ...validationError,
+        email: "Email is invalid",
+      }));
+
+      return false;
+    }
+
+    return true;
+  };
+
+  const validatePassword = () => {
+    setValidationError((validationError) => ({
+      ...validationError,
+      password: "",
+    }));
+
+    if (!isStrongPassword(password)) {
+      setValidationError((validationError) => ({
+        ...validationError,
+        password: "Password is not strong enough",
+      }));
+
+      return false;
+    }
+
+    return true;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validateEmail() && !validatePassword()) {
+      return;
+    }
+
     if (password !== confirmPassword) {
       setSignUpSatus("failed");
       setErrorMessage("Passwords don't match");
@@ -61,6 +107,9 @@ export default function Signup() {
             placeholder="johndoe@gmail.com"
             onChange={(e) => setEmail(e.target.value)}
           />
+          {validationError.email && (
+            <ErrorMessage errorMessage={validationError.email} />
+          )}
           <div className="form-subtitle">Password</div>
           <input
             value={password}
@@ -69,6 +118,9 @@ export default function Signup() {
             placeholder="*******"
             onChange={(e) => setPassword(e.target.value)}
           />
+          {validationError.password && (
+            <ErrorMessage errorMessage={validationError.password} />
+          )}
           <div className="form-subtitle">Confirm Password</div>
           <input
             value={confirmPassword}

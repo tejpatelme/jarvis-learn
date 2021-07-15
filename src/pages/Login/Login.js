@@ -1,34 +1,35 @@
 import "./Login.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "../../context/auth-context";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useToast } from "../../context/toast-context";
 
 export default function Login() {
-  const { logInUser } = useAuth();
+  const { logInUser, isLoggedIn } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginStatus, setLoginStatus] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-
+  const { dispatch: toastDispatch } = useToast();
   const { state } = useLocation();
   const navigate = useNavigate();
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  //   useEffect(() => isLoggedIn && navigate("/", { replace: true }), []);
+  //eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => isLoggedIn && navigate("/", { replace: true }), []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const success = await logInUser(email, password);
 
     if (success === true) {
+      toastDispatch({
+        type: "SUCCESS",
+        payload: { message: "Login Successful" },
+      });
       setLoginStatus("success");
       setErrorMessage("");
       navigate(state?.from ? state.from : "/");
     }
-    // if (status === 401) {
-    //   setLoginStatus("failed");
-    //   setErrorMessage(errorMessage);
-    // }
   };
 
   return (
