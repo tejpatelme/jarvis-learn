@@ -33,14 +33,11 @@ export default function SideBar({ showSidebar, setShowSidebar }) {
       </button>
       <div className="links-container">
         <div className="space-y-2">
-          <SidebarNavlink
-            icon="home"
-            link="/"
-            title="Home"
-            setShowSidebar={setShowSidebar}
-          />
+          <SidebarNavlink icon="home" link="/" title="Home" />
           <SidebarNavlink icon="video_library" link="library" title="Library" />
-          <SidebarNavlink icon="person" link={`profile`} title="Profile" />
+          {isLoggedIn && (
+            <SidebarNavlink icon="person" link={`profile`} title="Profile" />
+          )}
           {!isLoggedIn && (
             <button onClick={onSignupClick} className="btn sidebar-button">
               <span className="material-icons-round icon-md icon-gray">

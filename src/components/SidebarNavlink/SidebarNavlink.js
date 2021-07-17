@@ -1,11 +1,10 @@
 import "./SidebarNavlink.css";
 import { NavLink } from "react-router-dom";
 
-export default function SidebarNavlink({ link, icon, title, setShowSidebar }) {
+export default function SidebarNavlink({ link, icon, title }) {
   return (
     <NavLink
       end
-      onClick={() => setShowSidebar(false)}
       to={link}
       activeClassName="active-link"
       className="sidebar-navlink"

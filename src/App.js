@@ -1,6 +1,6 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { NavBar, Sidebar, ToastContainer } from "./components";
 import PrivateRoute from "./auth/PrivateRoute";
 import {
@@ -24,6 +24,7 @@ function App() {
   const { dispatch } = useUserData();
   const { isLoggedIn, setup401Interceptor } = useAuth();
   const { dispatch: toastDispatch } = useToast();
+  const location = useLocation();
 
   useEffect(() => {
     (async () => {
@@ -37,6 +38,8 @@ function App() {
     (async () => fetchUsersPlaylists(isLoggedIn, dispatch, toastDispatch))();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoggedIn]);
+
+  useEffect(() => setShowSidebar(false), [location]);
 
   return (
     <div onClick={() => setShowSidebar(false)} className="App">
