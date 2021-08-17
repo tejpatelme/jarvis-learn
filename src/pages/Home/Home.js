@@ -29,7 +29,7 @@ export default function Home() {
   const lengthIsZero = videos.length === 0;
 
   return (
-    <div>
+    <div className="home-container">
       <h2 className="mt-5 mb-2 pl-3">Topics</h2>
       <div className={`topic-card-container ${lengthIsZero ? "disabled" : ""}`}>
         {topics.map((topic, idx) => (

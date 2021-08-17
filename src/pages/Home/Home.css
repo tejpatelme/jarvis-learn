@@ -2,6 +2,11 @@
   position: static;
 }
 
+.home-container {
+  width: 100%;
+  flex-grow: 1;
+}
+
 .nav-container {
   max-width: 100%;
   padding-left: 3rem;
