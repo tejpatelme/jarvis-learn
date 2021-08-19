@@ -62,3 +62,24 @@ export const addVideoToPlaylist = async (options) => {
     });
   }
 };
+
+export const deletePlaylist = async (playlistId, dispatch, toastDispatch) => {
+  const data = await axiosWithTryCatch(
+    () => axios.delete(`${API.BASE_URL}/playlists/${playlistId}`),
+    toastDispatch
+  );
+
+  if (data?.success) {
+    toastDispatch({
+      type: "SUCCESS",
+      payload: { message: "Playlist deleted successfully" },
+    });
+
+    dispatch({
+      type: "SET_PLAYLISTS",
+      payload: {
+        playlists: data?.updatedPlaylists,
+      },
+    });
+  }
+};
