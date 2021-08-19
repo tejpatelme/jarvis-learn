@@ -3,26 +3,39 @@ import { useParams } from "react-router";
 import "./Video.css";
 import { useUserData } from "../../context/userdata-context";
 import { ModalBg, PlaylistModal } from "../../components";
+import { addVideoToPlaylist } from "../../services/api/playlist-requests";
+import { useToast } from "../../context/toast-context";
+import { useAuth } from "../../context/auth-context";
+import { useNavigate } from "react-router-dom";
 
 export default function Video() {
+  const navigate = useNavigate();
   const { videoId } = useParams();
-  const { liked, dispatch } = useUserData();
+  const { playlists, dispatch } = useUserData();
+  const { dispatch: toastDispatch } = useToast();
+  const { isLoggedIn } = useAuth();
   const [showModal, setShowModal] = useState(false);
   const { videos } = useUserData();
   const currentVideo = videos.find((video) => video.videoId === videoId);
+  const likedVideos = playlists.find(
+    (playlist) => playlist.name === "Liked Videos"
+  );
 
-  const handleLike = (id) => {
-    const match = liked.find((video) => video.id === id);
-    if (match) {
-      dispatch({ type: "REMOVE_FROM_LIKED", payload: id });
-      return;
+  const handleLike = () => {
+    if (isLoggedIn === false) {
+      return navigate("/login");
     }
 
-    dispatch({ type: "ADD_TO_LIKED", payload: currentVideo });
+    addVideoToPlaylist({
+      playlistId: likedVideos._id,
+      currentVideo,
+      dispatch,
+      toastDispatch,
+    });
   };
 
   const videosEmpty = videos.length === 0;
-
+  console.log(likedVideos);
   return (
     <div>
       {videosEmpty ? (
@@ -56,14 +69,14 @@ export default function Video() {
                 <span className="channel-name">{currentVideo.channelName}</span>
               </div>
               <div>
-                <button
-                  className="mr-3"
-                  onClick={() => handleLike(currentVideo.id)}
-                >
-                  {/* {liked.find((video) => video.id === currentVideo.id) ? (
+                <button className="mr-3" onClick={() => handleLike()}>
+                  {likedVideos?.videos.find(
+                    (video) => video.id === currentVideo.id
+                  ) ? (
                     <span className="material-icons">favorite</span>
-                  ) : ( )*/}
-                  <span className="material-icons">favorite_border</span>
+                  ) : (
+                    <span className="material-icons">favorite_border</span>
+                  )}
                 </button>
                 <button onClick={() => setShowModal((showModal) => !showModal)}>
                   <span className="material-icons">playlist_add</span>
