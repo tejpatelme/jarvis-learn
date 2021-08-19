@@ -65,7 +65,10 @@ export default function AuthProvider({ children }) {
         return data?.success;
       }
     } catch (err) {
-      console.log(err);
+      toastDispatch({
+        type: "ERROR",
+        payload: { message: "Invalid Credentials! Try again." },
+      });
     }
   };
 
