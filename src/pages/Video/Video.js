@@ -6,16 +6,15 @@ import { ModalBg, PlaylistModal } from "../../components";
 import { addVideoToPlaylist } from "../../services/api/playlist-requests";
 import { useToast } from "../../context/toast-context";
 import { useAuth } from "../../context/auth-context";
-import { useNavigate } from "react-router-dom";
 
 export default function Video() {
-  const navigate = useNavigate();
   const { videoId } = useParams();
   const { playlists, dispatch } = useUserData();
   const { dispatch: toastDispatch } = useToast();
   const { isLoggedIn } = useAuth();
   const [showModal, setShowModal] = useState(false);
   const { videos } = useUserData();
+  const videosEmpty = videos.length === 0;
   const currentVideo = videos.find((video) => video.videoId === videoId);
   const likedVideos = playlists.find(
     (playlist) => playlist.name === "Liked Videos"
@@ -23,7 +22,10 @@ export default function Video() {
 
   const handleLike = () => {
     if (isLoggedIn === false) {
-      return navigate("/login");
+      return toastDispatch({
+        type: "INFO",
+        payload: { message: "Login to like videos" },
+      });
     }
 
     addVideoToPlaylist({
@@ -34,8 +36,17 @@ export default function Video() {
     });
   };
 
-  const videosEmpty = videos.length === 0;
-  console.log(likedVideos);
+  const handlePlaylistClicked = () => {
+    if (isLoggedIn === false) {
+      return toastDispatch({
+        type: "INFO",
+        payload: { message: "Login to manage playlists" },
+      });
+    }
+
+    setShowModal((showModal) => !showModal);
+  };
+
   return (
     <div>
       {videosEmpty ? (
@@ -78,7 +89,7 @@ export default function Video() {
                     <span className="material-icons">favorite_border</span>
                   )}
                 </button>
-                <button onClick={() => setShowModal((showModal) => !showModal)}>
+                <button onClick={handlePlaylistClicked}>
                   <span className="material-icons">playlist_add</span>
                 </button>
               </div>
