@@ -5,6 +5,7 @@
 @media (min-width: 640px) {
   .view-container {
     display: flex;
+    align-items: flex-start;
   }
 }
 
