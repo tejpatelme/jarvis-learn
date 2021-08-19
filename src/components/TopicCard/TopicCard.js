@@ -16,7 +16,7 @@ export default function TopicCard({
           <div className="topic-details">
             <p className="topic-heading">{name}</p>
             <p className="topic-videos-info">
-              {videos} videos • {totalLength} hours
+              {videos} videos • {totalLength}
             </p>
           </div>
         </div>
