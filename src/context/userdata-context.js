@@ -69,9 +69,9 @@ const reducer = (prevState, action) => {
 };
 
 export default function UserDataProvider({ children }) {
-  const [{ videos, liked, playlists }, dispatch] = useReducer(reducer, data);
+  const [{ videos, playlists }, dispatch] = useReducer(reducer, data);
   return (
-    <UserDataContext.Provider value={{ videos, liked, playlists, dispatch }}>
+    <UserDataContext.Provider value={{ videos, playlists, dispatch }}>
       {children}
     </UserDataContext.Provider>
   );
