@@ -1,0 +1,28 @@
+.profile-container {
+  padding: 1rem;
+  max-width: 24rem;
+  width: 100%;
+}
+
+@media screen and (min-width: 640px) {
+  .profile-container {
+    padding: 1.75rem;
+  }
+}
+
+.label {
+  margin-bottom: 0.5rem;
+  display: block;
+  font-size: 1rem;
+  font-weight: 500;
+  color: black;
+}
+
+.details-display {
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  margin-bottom: 1.25rem;
+  font-weight: 500;
+  background-color: lightgray;
+  color: black;
+}

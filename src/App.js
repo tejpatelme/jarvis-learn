@@ -12,6 +12,7 @@ import {
   Liked,
   Login,
   Signup,
+  Profile,
 } from "./pages";
 import { useUserData } from "./context/userdata-context";
 import { useAuth } from "./context/auth-context";
@@ -59,7 +60,7 @@ function App() {
               <NavBar setShowSidebar={setShowSidebar} />
               <Routes>
                 <Route path="/" element={<Home />} />
-
+                <Route path="/profile" element={<Profile />} />
                 <Route path="/topic/:topicName" element={<Topic />} />
                 <Route path="liked" element={<Liked />} />
 
