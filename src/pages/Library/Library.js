@@ -53,7 +53,7 @@ export default function Library() {
                       </button>
                       <Link replace to={`/playlist/${playlist.name}`}>
                         <button
-                          className="btn btn-xs btn-primary"
+                          className="btn btn-xs"
                           disabled={playlist.videos.length === 0 ? true : false}
                         >
                           SEE ALL
