@@ -20,6 +20,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoginStatus("loading");
+
     const success = await logInUser(email, password);
 
     if (success === true) {
@@ -34,8 +35,9 @@ export default function Login() {
   };
 
   const loginAsGuest = async () => {
-    const success = await logInUser("lancelot@gmail.com", "Lancelot20$");
     setLoginStatus("loading");
+    const success = await logInUser("lancelot@gmail.com", "Lancelot20$");
+
     if (success === true) {
       toastDispatch({
         type: "SUCCESS",
@@ -76,16 +78,21 @@ export default function Login() {
               {errorMessage}
             </div>
           )}
-          <button type="submit" className="btn btn-lg btn-primary">
-            Login
+          <button
+            disabled={loginStatus === "loading"}
+            type="submit"
+            className="btn btn-lg btn-primary"
+          >
+            {loginStatus === "loading" ? "Logging in..." : " Login"}
           </button>
         </form>
         <button
+          disabled={loginStatus === "loading"}
           onClick={loginAsGuest}
           type="submit"
           className="btn btn-lg btn-primary"
         >
-          Login as Guest
+          {loginStatus === "loading" ? "Logging in..." : "Login as Guest"}
         </button>
         <p>
           Don't have an account?{" "}
