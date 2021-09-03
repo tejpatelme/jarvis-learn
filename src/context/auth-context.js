@@ -15,6 +15,7 @@ export default function AuthProvider({ children }) {
     isLoggedIn: userToken ? true : false,
     token: userToken,
   });
+  const [loginStatus, setLoginStatus] = useState("idle");
 
   const { isLoggedIn, token } = loginInfo;
   const { dispatch: toastDispatch } = useToast();
@@ -49,6 +50,7 @@ export default function AuthProvider({ children }) {
   };
 
   const logInUser = async (email, password) => {
+    setLoginStatus("loading");
     try {
       const { data } = await axios.post(`${API.BASE_URL}/users/login`, {
         email,
@@ -61,7 +63,7 @@ export default function AuthProvider({ children }) {
           isLoggedIn: true,
           token: data.token,
         });
-
+        setLoginStatus("fulfilled");
         return data?.success;
       }
     } catch (err) {
@@ -69,6 +71,7 @@ export default function AuthProvider({ children }) {
         type: "ERROR",
         payload: { message: "Invalid Credentials! Try again." },
       });
+      setLoginStatus("rejected");
     }
   };
 
@@ -101,6 +104,7 @@ export default function AuthProvider({ children }) {
     <AuthContext.Provider
       value={{
         setup401Interceptor,
+        loginStatus,
         isLoggedIn,
         signUpUser,
         logInUser,

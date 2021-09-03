@@ -19,8 +19,23 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoginStatus("loading");
     const success = await logInUser(email, password);
 
+    if (success === true) {
+      toastDispatch({
+        type: "SUCCESS",
+        payload: { message: "Login Successful" },
+      });
+      setLoginStatus("success");
+      setErrorMessage("");
+      navigate(state?.from ? state.from : "/");
+    }
+  };
+
+  const loginAsGuest = async () => {
+    const success = await logInUser("lancelot@gmail.com", "Lancelot20$");
+    setLoginStatus("loading");
     if (success === true) {
       toastDispatch({
         type: "SUCCESS",
@@ -65,6 +80,13 @@ export default function Login() {
             Login
           </button>
         </form>
+        <button
+          onClick={loginAsGuest}
+          type="submit"
+          className="btn btn-lg btn-primary"
+        >
+          Login as Guest
+        </button>
         <p>
           Don't have an account?{" "}
           <Link to="/signup">
