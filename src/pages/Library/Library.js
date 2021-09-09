@@ -51,7 +51,7 @@ export default function Library() {
                       >
                         <span className="material-icons-round">delete</span>
                       </button>
-                      <Link replace to={`/playlist/${playlist.name}`}>
+                      <Link to={`/playlist/${playlist.name}`}>
                         <button
                           className="btn btn-xs"
                           disabled={playlist.videos.length === 0 ? true : false}
