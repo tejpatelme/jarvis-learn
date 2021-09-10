@@ -6,12 +6,10 @@ import { getUserDetails } from "../../services/api/users-requests";
 export default function Profile() {
   const { dispatch: toastDispatch } = useToast();
   const [currentUser, setCurrentUser] = useState(null);
-  console.log(currentUser);
 
   useEffect(() => {
     (async () => {
       const user = await getUserDetails(toastDispatch);
-      console.log(user);
       setCurrentUser(user);
     })();
   }, [toastDispatch]);
