@@ -19,6 +19,9 @@ export default function Video() {
   const likedVideos = playlists.find(
     (playlist) => playlist.name === "Liked Videos"
   );
+  const videoInLiked = likedVideos?.videos.find(
+    (video) => video._id === currentVideo._id
+  );
 
   const handleLike = () => {
     if (isLoggedIn === false) {
@@ -81,9 +84,7 @@ export default function Video() {
               </div>
               <div>
                 <button className="mr-3" onClick={() => handleLike()}>
-                  {likedVideos?.videos.find(
-                    (video) => video.id === currentVideo.id
-                  ) ? (
+                  {videoInLiked ? (
                     <span className="material-icons">favorite</span>
                   ) : (
                     <span className="material-icons">favorite_border</span>
