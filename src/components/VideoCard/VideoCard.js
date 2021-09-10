@@ -6,7 +6,6 @@ export default function VideoCard({ videoDetails }) {
   return (
     <Link to={`/video/${videoId}`}>
       <div className="video-card relative">
-        {/* <div> */}
         <img
           width="300px"
           height="150px"
@@ -15,8 +14,6 @@ export default function VideoCard({ videoDetails }) {
           alt="video-thumbnail"
           loading="lazy"
         />
-        {/* <span className="badge badge-text">4:52</span> */}
-        {/* </div> */}
         <p className="video__title">{name}</p>
         <div className="channel__details">
           <span>By</span>
