@@ -17,9 +17,9 @@ export default function SideBar({ showSidebar, setShowSidebar }) {
     logOutUser();
   };
 
-  const onSignupClick = () => {
+  const onLoginClick = () => {
     setShowSidebar(false);
-    navigate("/signup");
+    navigate("/login");
   };
 
   return (
@@ -39,11 +39,11 @@ export default function SideBar({ showSidebar, setShowSidebar }) {
             <SidebarNavlink icon="person" link={`profile`} title="Profile" />
           )}
           {!isLoggedIn && (
-            <button onClick={onSignupClick} className="btn sidebar-button">
+            <button onClick={onLoginClick} className="btn sidebar-button">
               <span className="material-icons-round icon-md icon-gray">
-                person_add
+                login
               </span>
-              <span className="ml-2">Sign Up</span>
+              <span className="ml-2">Login</span>
             </button>
           )}
         </div>
