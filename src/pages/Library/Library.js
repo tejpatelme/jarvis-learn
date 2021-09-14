@@ -4,13 +4,11 @@ import { LoadingContainer, VideoCard } from "../../components";
 import { Link } from "react-router-dom";
 import { useToast } from "../../context/toast-context";
 import { deletePlaylist } from "../../services/api/playlist-requests";
-import { useTheme } from "../../context/theme-context";
 
 export default function Library() {
   const { playlists, videos } = useUserData();
   const { dispatch } = useUserData();
   const { dispatch: toastDispatch } = useToast();
-  const { currentTheme } = useTheme();
 
   const handleDeletePlaylist = async (playlist) => {
     if (playlist.name === "Liked Videos" || playlist.name === "Watch Later") {
