@@ -8,22 +8,24 @@
 .form-container {
   width: 450px;
   margin: auto;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border);
   padding: 2rem;
   border-radius: 0.25rem;
-  background: white;
+  background: var(--bg-color);
 }
 
 .form-title {
   font-size: 1.675rem;
   text-align: center;
   margin-bottom: 2rem;
+  color: var(--text-one);
 }
 
 .form-subtitle {
   font-size: 1.125rem;
   margin-bottom: 1rem;
   font-weight: 600;
+  color: var(--text-one);
 }
 
 .input {
@@ -31,7 +33,8 @@
   padding: 0.875rem;
   margin-bottom: 1.5rem;
   box-shadow: none;
-  background: #f3f4f6;
+  background: var(--hover);
+  color: var(--text-one);
 }
 
 .form-container .btn {
@@ -55,4 +58,8 @@
     height: 85vh;
     padding: 1rem;
   }
+}
+
+.form-container p {
+  color: var(--text-two);
 }

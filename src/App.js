@@ -52,25 +52,28 @@ function App() {
         <Route
           path="*"
           element={
-            <div className="view-container">
-              <Sidebar
-                showSidebar={showSidebar}
-                setShowSidebar={setShowSidebar}
-              />
+            <>
               <NavBar setShowSidebar={setShowSidebar} />
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/topic/:topicName" element={<Topic />} />
-                <Route path="liked" element={<Liked />} />
-
-                <PrivateRoute path="/library" element={<Library />} />
-                <PrivateRoute
-                  path="/playlist/:playlistName"
-                  element={<Playlist />}
+              <div className="view-container">
+                <Sidebar
+                  showSidebar={showSidebar}
+                  setShowSidebar={setShowSidebar}
                 />
-              </Routes>
-            </div>
+
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/profile" element={<Profile />} />
+                  <Route path="/topic/:topicName" element={<Topic />} />
+                  <Route path="liked" element={<Liked />} />
+
+                  <PrivateRoute path="/library" element={<Library />} />
+                  <PrivateRoute
+                    path="/playlist/:playlistName"
+                    element={<Playlist />}
+                  />
+                </Routes>
+              </div>
+            </>
           }
         />
         <Route path="/video/:videoId" element={<Video />} />

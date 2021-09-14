@@ -1,5 +1,5 @@
 .active-link {
-  background-color: #d4d4d8;
+  background-color: var(--active-link);
 }
 
 .sidebar-navlink {
@@ -7,11 +7,11 @@
   border-radius: 0.25rem;
   display: flex;
   align-items: center;
-  color: #27272a;
+  color: var(--nav-link);
 }
 
 .sidebar-navlink:hover {
-  background-color: #e4e4e7;
+  background-color: var(--hover);
 }
 
 .link-title {
@@ -25,5 +25,5 @@
 }
 
 .icon-gray {
-  color: #71717a;
+  color: var(--text-two);
 }

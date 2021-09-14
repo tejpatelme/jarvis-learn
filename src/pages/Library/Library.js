@@ -4,11 +4,13 @@ import { LoadingContainer, VideoCard } from "../../components";
 import { Link } from "react-router-dom";
 import { useToast } from "../../context/toast-context";
 import { deletePlaylist } from "../../services/api/playlist-requests";
+import { useTheme } from "../../context/theme-context";
 
 export default function Library() {
   const { playlists, videos } = useUserData();
   const { dispatch } = useUserData();
   const { dispatch: toastDispatch } = useToast();
+  const { currentTheme } = useTheme();
 
   const handleDeletePlaylist = async (playlist) => {
     if (playlist.name === "Liked Videos" || playlist.name === "Watch Later") {
@@ -49,7 +51,14 @@ export default function Library() {
                         onClick={() => handleDeletePlaylist(playlist)}
                         className="btn mr-3"
                       >
-                        <span className="material-icons-round">delete</span>
+                        <span
+                          style={{
+                            color: "black",
+                          }}
+                          className="material-icons-round"
+                        >
+                          delete
+                        </span>
                       </button>
                       <Link to={`/playlist/${playlist.name}`}>
                         <button

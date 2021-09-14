@@ -67,7 +67,7 @@ export default function Login() {
             value={password}
             type="password"
             className="input"
-            placeholder="*******"
+            placeholder="••••••"
             onChange={(e) => setPassword(e.target.value)}
           />
           {loginStatus === "failed" && (

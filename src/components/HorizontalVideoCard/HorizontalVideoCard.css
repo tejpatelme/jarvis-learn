@@ -16,6 +16,7 @@
   max-height: 4.5rem;
   overflow: hidden;
   text-overflow: hidden;
+  color: var(--text-two);
 }
 
 .horizontal-video-details {
