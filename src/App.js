@@ -9,7 +9,6 @@ import {
   Library,
   Topic,
   Playlist,
-  Liked,
   Login,
   Signup,
   Profile,
@@ -64,7 +63,6 @@ function App() {
                   <Route path="/" element={<Home />} />
                   <PrivateRoute path="/profile" element={<Profile />} />
                   <Route path="/topic/:topicName" element={<Topic />} />
-                  <Route path="liked" element={<Liked />} />
 
                   <PrivateRoute path="/library" element={<Library />} />
                   <PrivateRoute
