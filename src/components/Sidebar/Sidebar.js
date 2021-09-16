@@ -37,9 +37,12 @@ export default function SideBar({ showSidebar, setShowSidebar }) {
         <div className="space-y-2">
           <SidebarNavlink icon="home" link="/" title="Home" />
           <SidebarNavlink icon="video_library" link="library" title="Library" />
-          {isLoggedIn && (
-            <SidebarNavlink icon="person" link={`profile`} title="Profile" />
-          )}
+          <SidebarNavlink
+            icon="favorite"
+            link={`playlist/Liked%20Videos`}
+            title="Liked"
+          />
+          <SidebarNavlink icon="person" link={`profile`} title="Profile" />
           {!isLoggedIn && (
             <button onClick={onLoginClick} className="btn sidebar-button">
               <span className="material-icons-round icon-md icon-gray">
