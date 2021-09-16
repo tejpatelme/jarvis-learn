@@ -10,10 +10,11 @@
 }
 
 .page-title {
-  margin-top: 2rem;
+  margin-top: 0.5rem;
   font-weight: 600;
   display: flex;
   align-items: center;
+  color: var(--text-one);
 }
 
 .page-title svg {
@@ -27,6 +28,7 @@
   font-size: 0.875rem;
   margin-bottom: 1.125rem;
   justify-content: space-between;
+  color: var(--text-two);
 }
 
 .playlist-details button {
@@ -36,6 +38,7 @@
 .playlist-name {
   margin-right: 0.875rem;
   font-weight: 700;
+  color: var(--text-one);
 }
 
 .playlist-videos {

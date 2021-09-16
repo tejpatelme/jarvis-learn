@@ -15,7 +15,7 @@
   display: block;
   font-size: 1rem;
   font-weight: 500;
-  color: black;
+  color: var(--text-one);
 }
 
 .details-display {
@@ -23,6 +23,6 @@
   border-radius: 0.25rem;
   margin-bottom: 1.25rem;
   font-weight: 500;
-  background-color: lightgray;
-  color: black;
+  background-color: var(--active-link);
+  color: var(--text-one);
 }

@@ -115,7 +115,7 @@ export default function Signup() {
             value={password}
             type="password"
             className="input"
-            placeholder="*******"
+            placeholder="••••••"
             onChange={(e) => setPassword(e.target.value)}
           />
           {validationError.password && (

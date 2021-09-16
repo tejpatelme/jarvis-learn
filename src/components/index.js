@@ -10,3 +10,5 @@ export { default as LoadingContainer } from "./LoadingContainer/LoadingContainer
 export { default as ErrorMessage } from "./ErrorMessage/ErrorMessage";
 export { default as SidebarNavlink } from "./SidebarNavlink/SidebarNavlink";
 export { default as Sidebar } from "./Sidebar/Sidebar";
+export { default as Spinner } from "./Spinner/Spinner";
+export { default as PlaylistDetails } from "./PlaylistDetails/PlaylistDetails";

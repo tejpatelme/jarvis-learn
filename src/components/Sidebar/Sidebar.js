@@ -1,4 +1,5 @@
 import "./Sidebar.css";
+import Logo from "../../assests/logo.svg";
 import { SidebarNavlink } from "../";
 import { useAuth } from "../../context/auth-context";
 import { useToast } from "../../context/toast-context";
@@ -27,7 +28,8 @@ export default function SideBar({ showSidebar, setShowSidebar }) {
       onClick={(e) => e.stopPropagation()}
       className={`sidebar ${showSidebar ? "show-sidebar" : "hide-sidebar"}`}
     >
-      <span className="logo">JARVIS•LEARN</span>
+      <img src={Logo} alt="logo" className="sidebar-logo" />
+      {/* <span className="logo">JARVIS•LEARN</span> */}
       <button onClick={() => setShowSidebar(false)} className="btn">
         <span className="material-icons-round icon-gray close-icon">close</span>
       </button>
@@ -46,15 +48,15 @@ export default function SideBar({ showSidebar, setShowSidebar }) {
               <span className="ml-2">Login</span>
             </button>
           )}
+          {isLoggedIn && (
+            <button onClick={onLogoutClick} className="btn sidebar-button">
+              <span className="material-icons-round icon-md icon-gray">
+                logout
+              </span>
+              <span className="ml-2">Logout</span>
+            </button>
+          )}
         </div>
-        {isLoggedIn && (
-          <button onClick={onLogoutClick} className="btn sidebar-button">
-            <span className="material-icons-round icon-md icon-gray">
-              logout
-            </span>
-            <span className="ml-2">Logout</span>
-          </button>
-        )}
       </div>
     </div>
   );

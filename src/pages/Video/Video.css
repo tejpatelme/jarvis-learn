@@ -27,12 +27,13 @@
   font-weight: 600;
   font-size: 1rem;
   margin-bottom: 0.875rem;
+  color: var(--text-one);
 }
 
 .video-description {
   font-size: 0.875rem;
   max-width: 650px;
-  color: var(--gray-two);
+  color: var(--text-two);
   margin-bottom: 2rem;
 }
 
@@ -58,6 +59,7 @@
 
 .channel-name {
   font-weight: 600;
+  color: var(--text-one);
 }
 
 .extra-details {

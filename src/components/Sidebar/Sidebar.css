@@ -6,8 +6,8 @@
   z-index: 20;
   min-height: 100vh;
   width: 16rem;
-  background-color: white;
-  border-right: 1px solid #d4d4d8;
+  background-color: var(--bg-color);
+  border-right: 1px solid var(--border);
   flex-direction: column;
   align-items: center;
   transition-duration: 0.2s;
@@ -34,10 +34,9 @@
 
 .links-container {
   width: 100%;
-  margin-top: 1.5rem;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-between; */
   height: 100%;
 }
 
@@ -55,11 +54,12 @@
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   font-weight: 500;
-  background-color: white;
+  color: var(--text-one);
+  background-color: transparent;
 }
 
 .sidebar-button:hover {
-  background-color: #e4e4e7;
+  background-color: var(--hover);
 }
 
 .close-icon {
@@ -71,5 +71,15 @@
 @media (min-width: 640px) {
   .close-icon {
     display: none;
+  }
+}
+
+.sidebar-logo {
+  display: none;
+  margin-bottom: 1.5rem;
+}
+@media (max-width: 640px) {
+  .sidebar-logo {
+    display: inline;
   }
 }

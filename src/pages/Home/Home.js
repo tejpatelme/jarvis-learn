@@ -30,7 +30,7 @@ export default function Home() {
 
   return (
     <div className="home-container">
-      <h2 className="mt-5 mb-2 pl-3">Topics</h2>
+      <h2 className="mt-3 mb-2 pl-3">Topics</h2>
       <div className={`topic-card-container ${lengthIsZero ? "disabled" : ""}`}>
         {topics.map((topic, idx) => (
           <TopicCard key={idx} topic={topic} />

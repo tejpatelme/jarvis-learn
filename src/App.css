@@ -1,3 +1,38 @@
+.dark {
+  --bg-color: #27272a;
+  --heading: #ffffff;
+  --text-one: #e4e4e7;
+  --text-two: #a1a1aa;
+  --hover: #3f3f46;
+  --active-link: #3f3f46;
+  --border: #3f3f46;
+  --nav-link: #e4e4e7;
+  --icon: #f4f4f5;
+}
+
+.light {
+  --bg-color: #ffffff;
+  --heading: #000000;
+  --text-one: #2f3135;
+  --text-two: #3c4043;
+  --hover: #e4e4e7;
+  --active-link: #e5e7eb;
+  --border: #d4d4d8;
+  --nav-link: #27272a;
+  --icon: #171717;
+}
+
+.material-icons-round,
+.material-icons,
+.material-icons-outlined {
+  color: var(--icon);
+}
+
+body {
+  background-color: var(--bg-color);
+  transition-duration: 0.2s;
+}
+
 .view-container {
   display: block;
 }
