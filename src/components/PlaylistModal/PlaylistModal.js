@@ -6,8 +6,11 @@ import {
   addNewPlaylist,
   addVideoToPlaylist,
 } from "../../services/api/playlist-requests";
+import { Spinner } from "..";
 
 export default function PlaylistModal({ currentVideo }) {
+  const [addNewPlaylistStatus, setAddNewPlaylistStatus] = useState("idle");
+  const [addToPlaylistStatus, setAddToPlaylistStatus] = useState("idle");
   const { playlists, dispatch } = useUserData();
   const [input, setInput] = useState("");
   const { dispatch: toastDispatch } = useToast();
@@ -31,28 +34,37 @@ export default function PlaylistModal({ currentVideo }) {
       return;
     }
 
-    addNewPlaylist(
+    setAddNewPlaylistStatus("loading");
+    await addNewPlaylist(
       {
         name: input,
       },
       dispatch,
       toastDispatch
     );
+    setAddNewPlaylistStatus("fulfilled");
 
     setInput("");
   };
 
   const handlePlaylist = async (playlistId, currentVideo) => {
-    addVideoToPlaylist({
+    setAddToPlaylistStatus("loading");
+    await addVideoToPlaylist({
       playlistId,
       currentVideo,
       dispatch,
       toastDispatch,
     });
+    setAddToPlaylistStatus("fulfilled");
   };
 
   return (
     <div onClick={(e) => e.stopPropagation()} className="playlist-modal">
+      {addToPlaylistStatus === "loading" && (
+        <div className="spinner-container">
+          <Spinner />
+        </div>
+      )}
       <ul>
         {playlists.map((currentPlaylist, idx) => {
           const match = currentPlaylist.videos.find(
@@ -82,13 +94,20 @@ export default function PlaylistModal({ currentVideo }) {
           type="text"
           placeholder="Create a new playlist"
         />
-        <button onClick={handleAddNewPlaylist}>
-          <svg width="1.5rem" height="1.5rem" viewBox="0 0 24 24">
-            <path
-              d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
-              fill="currentColor"
-            ></path>
-          </svg>
+        <button
+          disabled={addNewPlaylistStatus === "loading"}
+          onClick={handleAddNewPlaylist}
+        >
+          {addNewPlaylistStatus === "loading" ? (
+            <Spinner />
+          ) : (
+            <svg width="1.5rem" height="1.5rem" viewBox="0 0 24 24">
+              <path
+                d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+                fill="currentColor"
+              ></path>
+            </svg>
+          )}
         </button>
       </div>
     </div>

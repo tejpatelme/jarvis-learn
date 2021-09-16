@@ -2,12 +2,13 @@ import { useState } from "react";
 import { useParams } from "react-router";
 import "./Video.css";
 import { useUserData } from "../../context/userdata-context";
-import { ModalBg, PlaylistModal } from "../../components";
+import { ModalBg, PlaylistModal, Spinner } from "../../components";
 import { addVideoToPlaylist } from "../../services/api/playlist-requests";
 import { useToast } from "../../context/toast-context";
 import { useAuth } from "../../context/auth-context";
 
 export default function Video() {
+  const [addToLikedStatus, setAddToLikedStatus] = useState("idle");
   const { videoId } = useParams();
   const { playlists, dispatch } = useUserData();
   const { dispatch: toastDispatch } = useToast();
@@ -23,7 +24,7 @@ export default function Video() {
     (video) => video._id === currentVideo._id
   );
 
-  const handleLike = () => {
+  const handleLike = async () => {
     if (isLoggedIn === false) {
       return toastDispatch({
         type: "INFO",
@@ -31,12 +32,14 @@ export default function Video() {
       });
     }
 
-    addVideoToPlaylist({
+    setAddToLikedStatus("loading");
+    await addVideoToPlaylist({
       playlistId: likedVideos._id,
       currentVideo,
       dispatch,
       toastDispatch,
     });
+    setAddToLikedStatus("fulfilled");
   };
 
   const handlePlaylistClicked = () => {
@@ -49,6 +52,13 @@ export default function Video() {
 
     setShowModal((showModal) => !showModal);
   };
+
+  const generateLikeIcon = () =>
+    videoInLiked ? (
+      <span className="material-icons">favorite</span>
+    ) : (
+      <span className="material-icons">favorite_border</span>
+    );
 
   return (
     <div>
@@ -83,11 +93,15 @@ export default function Video() {
                 <span className="channel-name">{currentVideo.channelName}</span>
               </div>
               <div>
-                <button className="mr-3" onClick={() => handleLike()}>
-                  {videoInLiked ? (
-                    <span className="material-icons">favorite</span>
+                <button
+                  disabled={addToLikedStatus === "loading"}
+                  className="mr-3"
+                  onClick={() => handleLike()}
+                >
+                  {addToLikedStatus === "loading" ? (
+                    <Spinner />
                   ) : (
-                    <span className="material-icons">favorite_border</span>
+                    generateLikeIcon()
                   )}
                 </button>
                 <button onClick={handlePlaylistClicked}>
