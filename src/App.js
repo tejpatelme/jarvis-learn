@@ -62,7 +62,7 @@ function App() {
 
                 <Routes>
                   <Route path="/" element={<Home />} />
-                  <Route path="/profile" element={<Profile />} />
+                  <PrivateRoute path="/profile" element={<Profile />} />
                   <Route path="/topic/:topicName" element={<Topic />} />
                   <Route path="liked" element={<Liked />} />
 
