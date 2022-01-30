@@ -1,0 +1,65 @@
+.form-wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-container {
+  width: 450px;
+  margin: auto;
+  border: 1px solid var(--border);
+  padding: 2rem;
+  border-radius: 0.25rem;
+  background: var(--bg-color);
+}
+
+.form-title {
+  font-size: 1.675rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--text-one);
+}
+
+.form-subtitle {
+  font-size: 1.125rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: var(--text-one);
+}
+
+.input {
+  width: 100%;
+  padding: 0.875rem;
+  margin-bottom: 1.5rem;
+  box-shadow: none;
+  background: var(--hover);
+  color: var(--text-one);
+}
+
+.form-container .btn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.signup-link {
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+@media screen and (max-width: 550px) {
+  .form-container {
+    border: none;
+    width: 100%;
+    height: 85vh;
+    padding: 1rem;
+  }
+}
+
+.form-container p {
+  color: var(--text-two);
+}

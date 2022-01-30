@@ -1,0 +1,25 @@
+.top-navigation {
+  background-color: var(--bg-color);
+  border-bottom: 1px solid var(--border);
+  position: static;
+}
+
+.nav-container {
+  border: none;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.hamburger {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .hamburger {
+    display: block;
+  }
+  .top-navigation {
+    position: sticky;
+    top: 0;
+  }
+}

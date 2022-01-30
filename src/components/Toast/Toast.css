@@ -1,0 +1,59 @@
+.btn-contianer {
+  display: flex;
+}
+
+.btn-container > * + * {
+  margin-left: 0.5rem;
+}
+
+.toast-container {
+  position: fixed;
+  width: 350px;
+  z-index: 999;
+  bottom: 24px;
+  right: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.alert {
+  padding: 1rem;
+  animation-name: toast-from-left;
+  animation-duration: 0.3s;
+  animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+@media screen and (max-width: 425px) {
+  .toast-container {
+    max-width: 300px;
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .alert {
+    animation-name: toast-from-bottom;
+  }
+}
+
+.toast-container > * + * {
+  margin-top: 0.5rem;
+}
+
+@keyframes toast-from-left {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes toast-from-bottom {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}
