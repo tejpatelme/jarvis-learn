@@ -1,10 +1,8 @@
+const BASE_URL = process.env.REACT_APP_API_URL;
+
 const API = {
-  // BASE_URL: "https://api-jarvis-learn.herokuapp.com",
-  // FETCH_VIDEOS_URL: "https://api-jarvis-learn.herokuapp.com/videos",
-  BASE_URL: "https://jarvis-learn-backend.curiousguy.repl.co",
-  FETCH_VIDEOS_URL: "https://jarvis-learn-backend.curiousguy.repl.co/videos",
-  // BASE_URL: "http://localhost:3001",
-  // FETCH_VIDEOS_URL: "http://localhost:3001/videos",
+  BASE_URL: `${BASE_URL}`,
+  FETCH_VIDEOS_URL: `${BASE_URL}/videos`,
 };
 
 export default API;
